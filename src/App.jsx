@@ -1,6 +1,6 @@
 import "./App.css";
 import MailBox from "./components/MailBox";
-import ProductCard from "./components/ProductCard";
+import ProductCard from "./components/ProductCard/ProductCard";
 
 const productData = [
   {
