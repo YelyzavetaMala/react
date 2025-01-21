@@ -1,48 +1,23 @@
 import "./App.css";
-import MailBox from "./components/MailBox";
-import ProductCard from "./components/ProductCard/ProductCard";
-
-const productData = [
-  {
-    id: "1_product",
-    productName: "Taco 1",
-    price: 3.99,
-    hasDiscount: true,
-    description: "Lorem",
-  },
-  {
-    id: "2_product",
-    productName: "Taco 2",
-    price: 4.99,
-    hasDiscount: false,
-    description: "Lorem",
-  },
-  {
-    id: "3_product",
-    productName: "Taco 3",
-    price: 5.99,
-    hasDiscount: false,
-    description: "Lorem",
-  },
-];
+import Profile from "./components/Profile/Profile";
+import userData from "./userData.json";
 
 function App() {
   return (
-    <div>
-      <MailBox />
-      {productData.map((item) => {
-        return (
-          <ProductCard
-            key={item.id}
-            productName={item.productName}
-            price={item.price}
-            hasDiscount={item.hasDiscount}
-            description={item.description}
+    <>
+      <div className="css.cardGrid">
+        {userData.map((user, id) => (
+          <Profile
+            key={id}
+            name={user.username}
+            tag={user.tag}
+            location={user.location}
+            image={user.avatar}
+            stats={user.stats}
           />
-        );
-      })}
-      <ProductCard title="taco" decription={10.99} />
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 
