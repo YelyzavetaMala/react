@@ -1,5 +1,6 @@
-.cardGrid {
-  display: grid;
-  place-content: center;
-  grid-template-columns: repeat(4, minmax(150px, 300px));
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
