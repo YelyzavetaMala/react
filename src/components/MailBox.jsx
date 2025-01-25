@@ -1,25 +1,19 @@
-function MailBox() {
-  const handleClick = (event) => {
-    console.log(event);
-  };
-  const handleDelete = (mailId) => {
-    console.log("mailId: ", mailId);
-  };
+function MailBox({ onLogMail, onDeleteMail }) {
   return (
     <div>
       <h2>MailBox</h2>
       <ul>
         <li>
-          Mail 1 <button onClick={() => handleDelete(1)}>X</button>
+          Mail 1 <button onClick={() => onDeleteMail(1)}>X</button>
         </li>
         <li>
-          Mail 2 <button onClick={() => handleDelete(2)}>X</button>
+          Mail 2 <button onClick={() => onDeleteMail(2)}>X</button>
         </li>
         <li>
-          Mail 3 <button onClick={() => handleDelete(3)}>X</button>
+          Mail 3 <button onClick={() => onDeleteMail(3)}>X</button>
         </li>
       </ul>
-      <button onClick={handleClick} type="button">
+      <button onClick={onLogMail} type="button">
         Send mail
       </button>
     </div>

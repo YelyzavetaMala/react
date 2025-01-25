@@ -8,6 +8,12 @@ import transactions from "./transactions.json";
 import MailBox from "./components/MailBox";
 
 function App() {
+  const onLogMail = () => {
+    console.log("Mail was sent");
+  };
+  const handleDelete = (mailId) => {
+    console.log("mailId: ", mailId);
+  };
   return (
     <>
       <div className="css.cardGrid">
@@ -24,7 +30,7 @@ function App() {
       </div>
       <FriendList friends={friends} />
       <TransactionHistory items={transactions} />
-      <MailBox />
+      <MailBox onLogMail={onLogMail} onDeleteMail={handleDelete} />
     </>
   );
 }
