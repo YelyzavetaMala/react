@@ -36,7 +36,11 @@ function App() {
       </div>
       <FriendList friends={friends} />
       <TransactionHistory items={transactions} />
-      <MailBox onLogMail={onLogMail} onDeleteMail={handleDelete} />
+      <MailBox
+        emailCounter={counter}
+        onLogMail={onLogMail}
+        onDeleteMail={handleDelete}
+      />
     </>
   );
 }

@@ -1,7 +1,9 @@
-function MailBox({ onLogMail, onDeleteMail }) {
+function MailBox({ onLogMail, onDeleteMail, emailCounter }) {
   return (
     <div>
-      <h2>MailBox</h2>
+      <h2>
+        MailBox<b>{emailCounter}</b>
+      </h2>
       <ul>
         <li>
           Mail 1 <button onClick={() => onDeleteMail(1)}>X</button>
