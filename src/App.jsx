@@ -49,7 +49,9 @@ function App() {
       </div>
       <FriendList friends={friends} />
       <TransactionHistory items={transactions} />
-      <button onClick={handleToggleMailBox}>Show MailBox</button>
+      <button onClick={handleToggleMailBox}>
+        {showMailBox ? "hide" : "show"} MailBox
+      </button>
       {showMailBox ? (
         <MailBox
           emails={emails}
