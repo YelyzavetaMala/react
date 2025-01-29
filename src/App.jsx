@@ -8,15 +8,28 @@ import transactions from "./transactions.json";
 import MailBox from "./components/MailBox";
 import { useState } from "react";
 
+const emailsData = [
+  { id: "1", email: "foo@bar.com" },
+  { id: "2", email: "alex3423@bar.com" },
+  { id: "3", email: "im0982@gmail.com" },
+];
+
 function App() {
   const [counter, setCounter] = useState(0);
+  const [emails, setEmails] = useState(emailsData);
+  const [showMailBox, setShowMailBox] = useState(false);
 
   const onLogMail = () => {
     console.log("Mail was sent");
-    setCounter(counter + 1);
+    setCounter((prevState) => prevState + 1);
   };
   const handleDelete = (mailId) => {
     console.log("mailId: ", mailId);
+    setEmails((prevState) => prevState.filter((email) => email.id !== mailId));
+  };
+
+  const handleToggleMailBox = () => {
+    setShowMailBox((prevState) => !prevState);
   };
 
   return (
@@ -36,11 +49,15 @@ function App() {
       </div>
       <FriendList friends={friends} />
       <TransactionHistory items={transactions} />
-      <MailBox
-        emailCounter={counter}
-        onLogMail={onLogMail}
-        onDeleteMail={handleDelete}
-      />
+      <button onClick={handleToggleMailBox}>Show MailBox</button>
+      {showMailBox ? (
+        <MailBox
+          emails={emails}
+          emailCounter={counter}
+          onLogMail={onLogMail}
+          onDeleteMail={handleDelete}
+        />
+      ) : null}
     </>
   );
 }

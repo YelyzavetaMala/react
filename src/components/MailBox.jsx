@@ -1,11 +1,17 @@
-function MailBox({ onLogMail, onDeleteMail, emailCounter }) {
+function MailBox({ emails, onLogMail, onDeleteMail, emailCounter }) {
   return (
     <div>
       <h2>
         MailBox<b>{emailCounter}</b>
       </h2>
       <ul>
-        <li>
+        {emails.map((email) => (
+          <li key={email.id}>
+            {email.email}{" "}
+            <button onClick={() => onDeleteMail(email.id)}>X</button>
+          </li>
+        ))}
+        {/*<li>
           Mail 1 <button onClick={() => onDeleteMail(1)}>X</button>
         </li>
         <li>
@@ -13,7 +19,7 @@ function MailBox({ onLogMail, onDeleteMail, emailCounter }) {
         </li>
         <li>
           Mail 3 <button onClick={() => onDeleteMail(3)}>X</button>
-        </li>
+        </li>*/}
       </ul>
       <button onClick={onLogMail} type="button">
         Send mail
