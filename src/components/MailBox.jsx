@@ -1,4 +1,9 @@
+import { useEffect } from "react";
+
 function MailBox({ emails, onLogMail, onDeleteMail, emailCounter }) {
+  useEffect(() => {
+    console.log("MailBox render");
+  }, []);
   return (
     <div>
       <h2>
