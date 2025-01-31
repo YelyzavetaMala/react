@@ -2,7 +2,13 @@ import { useEffect } from "react";
 
 function MailBox({ emails, onLogMail, onDeleteMail, emailCounter }) {
   useEffect(() => {
-    console.log("MailBox render");
+    const onMouseMove = () => {
+      console.log("moving");
+    };
+    window.addEventListener("mausemove", onMouseMove);
+    return () => {
+      window.removeEventListener("mausemove", onMouseMove);
+    };
   }, []);
   return (
     <div>
