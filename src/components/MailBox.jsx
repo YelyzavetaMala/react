@@ -1,19 +1,23 @@
 import { useEffect } from "react";
 
-function MailBox({ emails, onLogMail, onDeleteMail, emailCounter }) {
+function MailBox({ emails, onClose, onLogMail, onDeleteMail, emailCounter }) {
   useEffect(() => {
-    const onMouseMove = () => {
-      console.log("moving");
+    const onKeyDown = (event) => {
+      if (event.code === "Escape") {
+        onClose();
+      }
+      console.log(`You clicked on some button ${event.code}`);
     };
-    window.addEventListener("mausemove", onMouseMove);
+    window.addEventListener("keydown", onKeyDown);
     return () => {
-      window.removeEventListener("mausemove", onMouseMove);
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, []);
   return (
     <div>
       <h2>
         MailBox<b>{emailCounter}</b>
+        <button onClick={onClose}>Close MailBox</button>
       </h2>
       <ul>
         {emails.map((email) => (

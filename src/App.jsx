@@ -55,6 +55,7 @@ function App() {
       {showMailBox ? (
         <MailBox
           emails={emails}
+          onClose={handleToggleMailBox}
           emailCounter={counter}
           onLogMail={onLogMail}
           onDeleteMail={handleDelete}
