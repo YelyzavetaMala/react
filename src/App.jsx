@@ -6,7 +6,7 @@ import FriendList from "./components/FriendList/FriendList";
 import TransactionHistory from "./components/TransactionHistory/TransactionHistory";
 import transactions from "./transactions.json";
 import MailBox from "./components/MailBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const emailsData = [
   { id: "1", email: "foo@bar.com" },
@@ -19,6 +19,11 @@ function App() {
   const [emails, setEmails] = useState(emailsData);
   const [showMailBox, setShowMailBox] = useState(false);
 
+  useEffect(() => {
+    if (counter === 0) return;
+    console.log(`Current counter - `, counter);
+  }, [counter]);
+
   const onLogMail = () => {
     console.log("Mail was sent");
     setCounter((prevState) => prevState + 1);
@@ -28,6 +33,10 @@ function App() {
     setEmails((prevState) => prevState.filter((email) => email.id !== mailId));
   };
 
+  /* const handleAddEmail = (mail = { id: "123", email: "hello@gmail.com" }) => {
+    setEmails((prevState) => [...prevState, mail]);
+  };
+*/
   const handleToggleMailBox = () => {
     setShowMailBox((prevState) => !prevState);
   };

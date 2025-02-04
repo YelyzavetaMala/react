@@ -12,7 +12,7 @@ function MailBox({ emails, onClose, onLogMail, onDeleteMail, emailCounter }) {
     return () => {
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, []);
+  }, [onClose]);
   return (
     <div>
       <h2>
