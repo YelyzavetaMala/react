@@ -16,13 +16,17 @@ const emailsData = [
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [emails, setEmails] = useState(emailsData);
+  const [emails, setEmails] = useState(() => {
+    const stringifiedEmail = localStorage.getItem("emails");
+    if (!stringifiedEmail) return emailsData;
+    const parsedEmails = JSON.parse(stringifiedEmail);
+    return parsedEmails;
+  });
   const [showMailBox, setShowMailBox] = useState(false);
 
   useEffect(() => {
-    if (counter === 0) return;
-    console.log(`Current counter - `, counter);
-  }, [counter]);
+    localStorage.setItem("emails", JSON.stringify(emails));
+  }, [emails]);
 
   const onLogMail = () => {
     console.log("Mail was sent");
