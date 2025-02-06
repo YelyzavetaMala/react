@@ -7,6 +7,10 @@ import TransactionHistory from "./components/TransactionHistory/TransactionHisto
 import transactions from "./transactions.json";
 import MailBox from "./components/MailBox";
 import { useEffect, useState } from "react";
+import Description from "./components/Cafe/Description";
+import Feedback from "./components/Cafe/Feedback";
+import Options from "./components/Cafe/Options";
+import Notification from "./components/Cafe/Notification";
 
 const emailsData = [
   { id: "1", email: "foo@bar.com" },
@@ -74,6 +78,10 @@ function App() {
           onDeleteMail={handleDelete}
         />
       ) : null}
+      <Description />
+      <Options />
+      <Feedback />
+      <Notification />
     </>
   );
 }
