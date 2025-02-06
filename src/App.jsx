@@ -27,10 +27,35 @@ function App() {
     return parsedEmails;
   });
   const [showMailBox, setShowMailBox] = useState(false);
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = JSON.parse(localStorage.getItem("feedback"));
+    return savedFeedback || { good: 0, neutral: 0, bad: 0 };
+  });
+
+  const updateFeedback = (type) => {
+    setFeedback((prevFeedback) => ({
+      ...prevFeedback,
+      [type]: prevFeedback[type] + 1,
+    }));
+  };
+
+  const resetFeedback = () => {
+    setFeedback({ good: 0, neutral: 0, bad: 0 });
+  };
 
   useEffect(() => {
     localStorage.setItem("emails", JSON.stringify(emails));
   }, [emails]);
+  useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(feedback));
+  }, [feedback]);
+
+  const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
+
+  const positivePercentage =
+    totalFeedback === 0
+      ? 0
+      : Math.round(((feedback.good + feedback.neutral) / totalFeedback) * 100);
 
   const onLogMail = () => {
     console.log("Mail was sent");
@@ -79,9 +104,22 @@ function App() {
         />
       ) : null}
       <Description />
-      <Options />
-      <Feedback />
-      <Notification />
+      <Options
+        updateFeedback={updateFeedback}
+        totalFeedback={totalFeedback}
+        resetFeedback={resetFeedback}
+      />
+      {totalFeedback > 0 ? (
+        <Feedback
+          good={feedback.good}
+          neutral={feedback.neutral}
+          bad={feedback.bad}
+          totalFeedback={totalFeedback}
+          positivePercentage={positivePercentage}
+        />
+      ) : (
+        <Notification />
+      )}
     </>
   );
 }
